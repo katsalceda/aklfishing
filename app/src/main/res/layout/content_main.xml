@@ -10,10 +10,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="rktechltd.aklfishing.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    android:background="@drawable/bg">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/imageView2"
+        android:src="@drawable/logo"
+        android:layout_marginTop="132dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E X P L O R E"
+        android:id="@+id/buttonExplore"
+        android:layout_marginTop="78dp"
+        android:background="#6e000000"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_alignEnd="@+id/imageView2"
+        android:onClick="buttonExplore" />
 </RelativeLayout>
