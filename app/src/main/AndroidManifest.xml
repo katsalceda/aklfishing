@@ -29,6 +29,10 @@
         <activity
             android:name=".DisclaimerActivity"
             android:label="@string/title_activity_disclaimer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ExperienceActivity"
+            android:label="@string/title_activity_experience"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
