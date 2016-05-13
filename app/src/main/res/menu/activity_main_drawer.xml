@@ -3,28 +3,22 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_xp"
+            android:title="My Fishing Experience" />
+        <item
+            android:id="@+id/nav_fish"
+            android:title="Fish Types" />
+        <item
             android:id="@+id/nav_checklist"
-            android:icon="@drawable/ic_menu_camera"
             android:title="Safety Checklist" />
         <item
             android:id="@+id/nav_rules"
-            android:icon="@drawable/ic_menu_gallery"
             android:title="Net Rules" />
         <item
             android:id="@+id/nav_faqs"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="Fishing FAQs" />
         <item
-            android:id="@+id/nav_fish"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Fishy Types" />
-        <item
-            android:id="@+id/nav_xp"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="My Fishing Experience" />
-        <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/ic_menu_manage"
             android:title="About" />
     </group>
 </menu>
