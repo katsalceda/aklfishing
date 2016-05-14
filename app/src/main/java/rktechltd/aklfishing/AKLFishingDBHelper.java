@@ -1,5 +1,6 @@
 package rktechltd.aklfishing;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -13,6 +14,8 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
 
     private static final String TEXT_TYPE = " TEXT";
     private static final String REAL_TYPE = " REAL";
+    private static final String DATE_TYPE = " DATE";
+    private static final String TIME_TYPE = " TIME";
     private static final String NUMERIC_TYPE = " NUMERIC";
     private static final String BLOB_TYPE = " BLOB";
     private static final String COMMA_SEP = ",";
@@ -45,8 +48,8 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_FISHEXPERIENCE_TABLE = "CREATE TABLE " + AKLFishingDBTables.FishingExperience.TABLE_NAME + " (" +
             AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_ID + NUMERIC_TYPE + COMMA_SEP +
             AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_LOCATION_ID + NUMERIC_TYPE + COMMA_SEP +
-            AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_DATE+ TEXT_TYPE + COMMA_SEP +
-            AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_TIME+ TEXT_TYPE + COMMA_SEP +
+            AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_DATE+ DATE_TYPE + COMMA_SEP +
+            AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_TIME+ TIME_TYPE + COMMA_SEP +
             AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_REMARK+ TEXT_TYPE + COMMA_SEP +
             AKLFishingDBTables.FishingExperience.PRIMARY_KEY +
             " )";
@@ -122,20 +125,105 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
-
-   /* public boolean saveCategory(Category aCategory) {
+    public boolean saveCategory(Category aCategory) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_FIRST_NAME, aUser.getFirstName());
-        cv.put(COLUMN_LAST_NAME, aUser.getLastName());
-        cv.put(COLUMN_USER_ID, aUser.getUserId());
-        cv.put(COLUMN_USER_PASSWORD, aUser.getUserPassword());
+        cv.put(AKLFishingDBTables.Category.COLUMN_CAT_ID, aCategory.getCategoryId());
+        cv.put(AKLFishingDBTables.Category.COLUMN_CAT_NAME, aCategory.getCategoryName());
+        cv.put(AKLFishingDBTables.Category.COLUMN_CAT_DESC, aCategory.getCategoryDescription());
 
-        db.insert(TABLE_USERS, null, cv);
+        db.insert(AKLFishingDBTables.Category.TABLE_NAME, null, cv);
         db.close();
         return true;
     }
+
+    public boolean saveFish(Fish aFish) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AKLFishingDBTables.Fish.COLUMN_FISH_ID, aFish.getFishId());
+        cv.put(AKLFishingDBTables.Fish.COLUMN_FISH_NAME, aFish.getFishName());
+        cv.put(AKLFishingDBTables.Fish.COLUMN_FISH_CAT, aFish.getFishCat().getCategoryId());
+        cv.put(AKLFishingDBTables.Fish.COLUMN_FISH_DESC, aFish.getFishDescription());
+        cv.put(AKLFishingDBTables.Fish.COLUMN_FISH_IMAGE, aFish.getFishImage());
+        db.insert(AKLFishingDBTables.Fish.TABLE_NAME, null, cv);
+        db.close();
+        return true;
+    }
+
+    public boolean saveLocation(Location aLocation) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AKLFishingDBTables.Location.COLUMN_LOCATION_ID, aLocation.getLocationId());
+        cv.put(AKLFishingDBTables.Location.COLUMN_LOCATION_NAME, aLocation.getLocationName());
+        cv.put(AKLFishingDBTables.Location.COLUMN_LOCATION_LONGITUDE, aLocation.getLongitude());
+        cv.put(AKLFishingDBTables.Location.COLUMN_lOCATION_LATITUDE, aLocation.getLatitude());
+        cv.put(AKLFishingDBTables.Location.COLUMN_LOCATION_N0TE, aLocation.getNote());
+        db.insert(AKLFishingDBTables.Location.TABLE_NAME, null, cv);
+        db.close();
+        return true;
+    }
+
+    public boolean saveCheckList(Checklist aCheckList){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AKLFishingDBTables.CheckList.COLUMN_CHECKLIST_ID,aCheckList.getCheckListId());
+        cv.put(AKLFishingDBTables.CheckList.COLUMN_CHECKLIST_DESCRIPTION,aCheckList.getDescription());
+        cv.put(AKLFishingDBTables.CheckList.COLUMN_CHECKLIST_IMAGE,aCheckList.getImage());
+        db.insert(AKLFishingDBTables.CheckList.TABLE_NAME,null, cv);
+        db.close();
+        return true;
+    }
+
+    public boolean saveNetRule(NetRule aNetRule){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AKLFishingDBTables.NetRules.COLUMN_NETRULES_ID,aNetRule.getRulesId());
+        cv.put(AKLFishingDBTables.NetRules.COLUMN_NETRULES_DESCRIPTION,aNetRule.getDescription());
+        cv.put(AKLFishingDBTables.NetRules.COLUMN_NETRULES_IMAGE,aNetRule.getImage());
+        db.insert(AKLFishingDBTables.NetRules.TABLE_NAME,null, cv);
+        db.close();
+        return true;
+    }
+
+    public boolean saveFaq(Faq aFaq){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AKLFishingDBTables.Faq.COLUMN_FAQ_ID,aFaq.getFaqId());
+        cv.put(AKLFishingDBTables.Faq.COLUMN_FAQ_QUESTION,aFaq.getQuestion());
+        cv.put(AKLFishingDBTables.Faq.COLUMN_FAQ_ANSWER,aFaq.getAnswer());
+        db.insert(AKLFishingDBTables.Faq.TABLE_NAME,null, cv);
+        db.close();
+        return true;
+    }
+
+    public boolean saveFishingExperience(FishingExperience  aFishExp) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_ID, aFishExp.getExperienceId());
+        cv.put(AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_LOCATION_ID, aFishExp.getLocation().getLocationId());
+        cv.put(AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_DATE,aFishExp.getDate().toString());
+        cv.put(AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_TIME, aFishExp.getTime().toString());
+        cv.put(AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_REMARK, aFishExp.getRemark());
+        db.insert(AKLFishingDBTables.FishingExperience.TABLE_NAME, null, cv);
+        db.close();
+        return true;
+    }
+
+    public boolean saveFishingCatch(FishCatch aFishCatch) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(AKLFishingDBTables.FishCatch.COLUMN_FISH_CATCH_ID, aFishCatch.getFishCatchId());
+        cv.put(AKLFishingDBTables.FishCatch.COLUMN_FISH_CATCH_EXPERIENCE, aFishCatch.getFx().getExperienceId());
+        cv.put(AKLFishingDBTables.FishCatch.COLUMN_FISH_CATCH_LENGTH,aFishCatch.getLength());
+        cv.put(AKLFishingDBTables.FishCatch.COLUMN_FISH_CATCH_WEIGHT, aFishCatch.getWeight());
+        cv.put(AKLFishingDBTables.FishCatch.COLUMN_FISH_CATCH_IMAGE, aFishCatch.getPicture());
+        cv.put(AKLFishingDBTables.FishCatch.COLUMN_FISH_CATCH_REMARK, aFishCatch.getRemark());
+        db.insert(AKLFishingDBTables.FishCatch.TABLE_NAME, null, cv);
+        db.close();
+        return true;
+    }
+
+/*
 
     public List<User> getAllUsers() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -172,6 +260,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         }
 
         return null;
-    }*/
+    }
+*/
 
 }

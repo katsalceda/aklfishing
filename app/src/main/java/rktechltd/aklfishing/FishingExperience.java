@@ -9,30 +9,34 @@ import java.util.concurrent.TimeoutException;
  */
 public class FishingExperience {
     private int experienceId;
-    private int locationid;
+    private Location location;
     private Date date;
     private Time time;
     private String remark;
 
-    public FishingExperience(int experienceId, int locationid, Date date, Time time, String remark) {
+
+    public FishingExperience(int experienceId, Location location, Date date, Time time, String remark) {
         this.experienceId = experienceId;
-        this.locationid = locationid;
+        this.location = location;
         this.date = date;
         this.time = time;
         this.remark = remark;
     }
 
-
     public int getExperienceId() {
         return experienceId;
     }
 
-    public int getLocationid() {
-        return locationid;
+    public void setExperienceId(int experienceId) {
+        this.experienceId = experienceId;
     }
 
-    public void setLocationid(int locationid) {
-        this.locationid = locationid;
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Date getDate() {
