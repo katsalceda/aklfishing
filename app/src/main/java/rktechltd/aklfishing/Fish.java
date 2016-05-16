@@ -9,14 +9,24 @@ public class Fish {
     private String fishDescription;
     private byte[] fishImage;
     private Category fishCat;
+    private int minFishLengthCm;
+    private int minFishMeshSizeMm;
+    private int minDragNetMeshMm;
+    private boolean isCombinedBag;
 
-
-    public Fish(int fishId, String fishName, String fishDescription, byte[] fishImage) {
+    public Fish(){}
+    public Fish(int fishId, String fishName, String fishDescription, byte[] fishImage, Category fishCat, int minFishLengthCm, int minFishMeshSizeMm, int minDragNetMeshMm, boolean isCombinedBag){
         this.fishId = fishId;
         this.fishName = fishName;
         this.fishDescription = fishDescription;
         this.fishImage = fishImage;
+        this.fishCat = fishCat;
+        this.minFishLengthCm = minFishLengthCm;
+        this.minFishMeshSizeMm = minFishMeshSizeMm;
+        this.minDragNetMeshMm = minDragNetMeshMm;
+        this.isCombinedBag = isCombinedBag;
     }
+
 
     public int getFishId() {
         return fishId;
@@ -56,5 +66,37 @@ public class Fish {
 
     public void setFishCat(Category fishCat) {
         this.fishCat = fishCat;
+    }
+
+    public int getMinFishLengthCm() {
+        return minFishLengthCm;
+    }
+
+    public void setMinFishLengthCm(int minFishLengthCm) {
+        this.minFishLengthCm = minFishLengthCm;
+    }
+
+    public int getMinFishMeshSizeMm() {
+        return minFishMeshSizeMm;
+    }
+
+    public void setMinFishMeshSizeMm(int minFishMeshSizeMm) {
+        this.minFishMeshSizeMm = minFishMeshSizeMm;
+    }
+
+    public int getMinDragNetMeshMm() {
+        return minDragNetMeshMm;
+    }
+
+    public void setMinDragNetMeshMm(int minDragNetMeshMm) {
+        this.minDragNetMeshMm = minDragNetMeshMm;
+    }
+
+    public boolean isCombinedBag() {
+        return isCombinedBag;
+    }
+
+    public void setCombinedBag(boolean combinedBag) {
+        isCombinedBag = combinedBag;
     }
 }

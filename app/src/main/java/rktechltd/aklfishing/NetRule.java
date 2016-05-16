@@ -8,7 +8,7 @@ public class NetRule {
     private String description;
     private byte[] image;
 
-
+    public NetRule(){}
     public NetRule(int rulesId, String description, byte[] image) {
         this.rulesId = rulesId;
         this.description = description;

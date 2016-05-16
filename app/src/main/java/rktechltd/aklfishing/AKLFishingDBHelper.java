@@ -4,6 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.Path;
+import android.provider.MediaStore.Files;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 /**
  * Created by romelyn on 13/05/2016.
@@ -111,7 +117,68 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_CHECKLIST_TABLE);
         db.execSQL(CREATE_NETRULES_TABLE);
         db.execSQL(CREATE_FAQ_TABLE);
+
+        //save existing data TBA
+      /* Checklist [] checklists = new Checklist[]{ new Checklist(),
+                                                   new Checklist(),
+                                                   new Checklist(),
+                                                   new Checklist()};*/
+
+        Category [] cats = new Category[]{  new Category(1,"Fin Fish", "Fin Fish"),
+                                            new Category(2, "Cray Fish", "Cray Fish"),
+                                            new Category(3,"Shell Fish", "Shell Fish")};
+
+
+       // (int fishId, String fishName, String fishDescription, byte[] fishImage, Category fishCat, int minFishLengthCm, int minFishMeshSizeMm, int minDragNetMeshMm, boolean isCombinedBag){
+        Fish [] fishes = new Fish[]{new Fish(1, "Blue Cod", "Blue Cod", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 30, 100, 100, true),
+                                    new Fish(2, "Blue Moki", "Blue Cod", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 40, 114, 115, true),
+                                    new Fish(3, "Blue Nose", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(4, "Butterfish ", "Butterfish", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 35, 108, 108, true),
+                                    new Fish(5, "Elephant Fish", "Elephant Fish", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 150, 150, true),
+                                    new Fish(6, "Flat Fish", "Flat Fish", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(9, "John Dory", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(10, "Kahawai", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(11, "Parore", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(12, "Porae", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(13, "Red Cod", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(14, "Red Gurnard", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(15, "Blue Nose", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+                                    new Fish(16, "Blue Nose", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100, true),
+
+        };
+      /*  Faq [] faqs = new Faq[] { new Faq(),
+                                  new Faq(),
+                                  new Faq(),
+                                  new Faq()};
+
+
+        NetRule[] netRules = new NetRule[] { new NetRule(),
+                                             new NetRule(),
+                                             new NetRule(),
+                                             new NetRule() };
+
+        for(Checklist c : checklists ){
+          saveCheckList(c);
+         }
+
+        for(Category c : cats ){
+            saveCategory(c);
+        }
+        for(Faq f : faqs ){
+            saveFaq(f);
+        }
+
+        for(NetRule n : netRules ){
+            saveNetRule(n);
+        }
+
+        for(Fish f :fishes ){
+            saveFish(f);
+        }*/
+
     }
+
+
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DELETE_CATEGORY_TABLE);

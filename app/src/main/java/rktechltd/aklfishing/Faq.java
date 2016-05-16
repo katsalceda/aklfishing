@@ -8,7 +8,7 @@ public class Faq {
     private String question;
     private String answer;
 
-
+    public Faq(){}
     public Faq(int faqId, String question, String answer) {
         this.faqId = faqId;
         this.question = question;

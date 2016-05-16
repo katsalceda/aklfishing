@@ -8,7 +8,7 @@ public class Checklist {
     private String description;
     private byte[] image;
 
-
+    public Checklist(){}
     public Checklist(int checkListId, String description, byte[] image) {
         this.checkListId = checkListId;
         this.description = description;
