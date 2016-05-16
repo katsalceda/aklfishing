@@ -1,0 +1,84 @@
+package rktechltd.aklfishing;
+
+import java.sql.Time;
+import java.util.Date;
+
+/**
+ * Created by romelyn on 12/05/2016.
+ */
+public class FishCatch {
+    private int fishCatchId;
+    private FishingExperience fx;
+    private double length;
+    private double weight;
+    private byte[] picture;
+    private String name;
+    private String remark;
+
+
+    public FishCatch(int fishCatchId, FishingExperience fx, double length, double weight, byte[] picture, String name, String remark) {
+        this.fishCatchId = fishCatchId;
+        this.fx = fx;
+        this.length = length;
+        this.weight = weight;
+        this.picture = picture;
+        this.name = name;
+        this.remark = remark;
+    }
+
+    public int getFishCatchId() {
+        return fishCatchId;
+    }
+
+    public void setFishCatchId(int fishCatchId) {
+        this.fishCatchId = fishCatchId;
+    }
+
+    public FishingExperience getFx() {
+        return fx;
+    }
+
+    public void setFx(FishingExperience fx) {
+        this.fx = fx;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+}
