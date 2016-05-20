@@ -1,8 +1,7 @@
-package rktechltd.aklfishing;
+package rktechltd.aklfishing.models;
 
 import java.sql.Time;
 import java.util.Date;
-import java.util.concurrent.TimeoutException;
 
 /**
  * Created by romelyn on 13/05/2016.

@@ -1,4 +1,4 @@
-package rktechltd.aklfishing;
+package rktechltd.aklfishing.models;
 
 /**
  * Created by romelyn on 12/05/2016.

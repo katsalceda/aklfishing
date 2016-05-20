@@ -1,15 +1,19 @@
-package rktechltd.aklfishing;
+package rktechltd.aklfishing.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.Path;
-import android.provider.MediaStore.Files;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
+import rktechltd.aklfishing.models.Category;
+import rktechltd.aklfishing.models.Checklist;
+import rktechltd.aklfishing.models.Faq;
+import rktechltd.aklfishing.models.Fish;
+import rktechltd.aklfishing.models.FishCatch;
+import rktechltd.aklfishing.models.FishingExperience;
+import rktechltd.aklfishing.models.ImageHelper;
+import rktechltd.aklfishing.models.Location;
+import rktechltd.aklfishing.models.NetRule;
 
 /**
  * Created by romelyn on 13/05/2016.
@@ -119,7 +123,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_FAQ_TABLE);
 
         //save existing data TBA
-      Checklist [] checklists = new Checklist[]{ new Checklist(),
+      Checklist[] checklists = new Checklist[]{ new Checklist(),
                                                    new Checklist(),
                                                    new Checklist(),
                                                    new Checklist()};
@@ -344,7 +348,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean saveFishingExperience(FishingExperience  aFishExp) {
+    public boolean saveFishingExperience(FishingExperience aFishExp) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(AKLFishingDBTables.FishingExperience.COLUMN_FISHING_EXPERIENCE_ID, aFishExp.getExperienceId());
