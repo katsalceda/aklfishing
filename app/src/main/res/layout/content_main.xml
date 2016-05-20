@@ -22,19 +22,4 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="E X P L O R E"
-        android:id="@+id/buttonExplore"
-        android:layout_marginTop="78dp"
-        android:background="#6effffff"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_alignRight="@+id/imageView2"
-        android:layout_alignEnd="@+id/imageView2"
-        android:onClick="buttonExplore" />
 </RelativeLayout>
