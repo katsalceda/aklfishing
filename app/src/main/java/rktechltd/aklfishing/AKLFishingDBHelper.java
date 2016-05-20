@@ -16,7 +16,7 @@ import java.io.File;
  */
 public class AKLFishingDBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "aklfishingdatabase.db";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
 
     private static final String TEXT_TYPE = " TEXT";
     private static final String REAL_TYPE = " REAL";
@@ -129,42 +129,111 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
                 new Category(3, "Shell Fish", "Shell Fish")};
 
 
-        // (int fishId, String fishName, String fishDescription, byte[] fishImage, Category fishCat, int minFishLengthCm, int minFishMeshSizeMm, int minDragNetMeshMm, boolean isCombinedBag){
-        Fish[] fishes = new Fish[]{new Fish(1, "Blue Cod", "Blue Cod", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 30, 100, 100,0,true),
-                new Fish(2, "Blue Moki", "Blue Cod", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 40, 114, 115,0, true),
-                new Fish(3, "Blue Nose", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100,0, true),
-                new Fish(4, "Butterfish ", "Butterfish", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 35, 108, 108,0, true),
-                new Fish(5, "Elephant Fish", "Elephant Fish", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 114, 100,0, true),
-                new Fish(6, "Flat Fish", "Flat Fish", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 100, 100,0, true),
-                new Fish(9, "John Dory", "John Dory", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 90, 85,0, true),
-                new Fish(10, "Kahawai", "Blue Nose", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 114, 100,0, true),
-                new Fish(11, "Parore", "Parore", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 100, 100,0, true),
-                new Fish(12, "Porae", "Porae", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 100, 100,0, true),
-                new Fish(13, "Red Cod", "Red Cod", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 100, 100,0, true),
-                new Fish(14, "Red Gurnard", "Red Gurnard", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 40, 115, 115,0, true),
-                new Fish(15, "Red Moki", "Red Moki", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 160, 100,0, true),
-                new Fish(16, "Red Snapper", "Red Snapper", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 100, 100,0, true),
-                new Fish(17, "Rig", "Rig", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 125, 150,0, true),
-                new Fish(18, "Sand Flounder", "Sand Flounder", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 23, 114, 100,0, true),
-                new Fish(19, "School Shark", "School Shark", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 100, 100,0, true),
-                new Fish(20, "Tarakihi", "Tarakihi", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 125, 100,0, true),
-                new Fish(21, "Trevally", "Trevally", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 6, 12,12, true),
-                new Fish(22, "Eel", "Eel", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, 5,25, true),
-                new Fish(23, "Garfish", "Garfish", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, 160,100, true),
-                new Fish(24, "Groper", "Groper", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 75, 0, 100,100, true),
-                new Fish(25, "Kingfish", "Kingfish", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 30, 90,85, true),
-                new Fish(26, "Grey Mullet", "Grey Mullet", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, 25,25, true),
-                new Fish(27, "Pilchard", "Pilchard", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 27, 10, 125,100, true),
-                new Fish(28, "Snapper", "Snapper", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 30, 7, 125,100, true),
-                new Fish(29, "Yellow Eyed Mullet", "Yellow Eyed Mullet", ImageHelper.convertImage("drawable/fishsmall.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, 25,25, true)};
+        // (int fishId, String fishName, String fishDescription, byte[] fishImage, Category fishCat, int minFishLengthCm, int maxDailyLimit, boolean isCombinedBag){
+        Fish[] fishes = new Fish[]{new Fish(1, "Blue Cod", "Blue Cod", ImageHelper.convertImage("drawable/fish/finfish/bluecod.png"), new Category(1, "Fin Fish", "Fin Fish"), 30, 20, true),
+                new Fish(2, "Blue Moki", "Blue Moki", ImageHelper.convertImage("drawable/fish/finfish/bluemoki.png"), new Category(1, "Fin Fish", "Fin Fish"), 40, 20, true),
+                new Fish(3, "Blue Nose", "Blue Nose", ImageHelper.convertImage("drawable/fish/finfish/bluenose.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 5, true),
+                new Fish(4, "Butterfish ", "Butterfish", ImageHelper.convertImage("drawable/fish/finfish/butterfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 35, 20, true),
+                new Fish(5, "Elephant Fish", "Elephant Fish", ImageHelper.convertImage("drawable/fish/finfish/elephantfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 20, true),
+                new Fish(6, "Flat Fish", "Flat Fish", ImageHelper.convertImage("drawable/fish/finfish/flatfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 20, true),
+                new Fish(9, "John Dory", "John Dory", ImageHelper.convertImage("drawable/fish/finfish/johndory.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 20, true),
+                new Fish(10, "Kahawai", "Kahawai", ImageHelper.convertImage("drawable/fish/finfish/kahawai.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 20, true),
+                new Fish(11, "Parore", "Parore", ImageHelper.convertImage("drawable/fish/finfish/parore.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 20, true),
+                new Fish(12, "Porae", "Porae", ImageHelper.convertImage("drawable/fish/finfish/porae.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 20, true),
+                new Fish(13, "Rays Bream", "Rays Bream", ImageHelper.convertImage("drawable/fish/finfish/raysbream.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(14, "Gurnard", "Gurnard", ImageHelper.convertImage("drawable/gurnard.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 20, true),
+                new Fish(15, "Red Moki", "Red Moki", ImageHelper.convertImage("drawable/fish/finfish/redmoki.png"), new Category(1, "Fin Fish", "Fin Fish"), 40, 20, true),
+                new Fish(16, "Red Snapper", "Red Snapper", ImageHelper.convertImage("drawable/fish/finfish/redsnapper.png"), new Category(1, "Fin Fish", "Fin Fish"), 20, 0, true),
+                new Fish(17, "Rig", "Rig", ImageHelper.convertImage("drawable/fish/finfish/rig.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 20, true),
+                new Fish(18, "Sand Flounder", "Sand Flounder", ImageHelper.convertImage("drawable/fish/finfish/sandflounder.png"), new Category(1, "Fin Fish", "Fin Fish"), 23, 20, true),
+                new Fish(19, "School Shark", "School Shark", ImageHelper.convertImage("drawable/fish/finfish/schoolshark.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 20, true),
+                new Fish(20, "Tarakihi", "Tarakihi", ImageHelper.convertImage("drawable/fish/finfish/tarakihi.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 20, true),
+                new Fish(21, "Trevally", "Trevally", ImageHelper.convertImage("drawable/fish/finfish/trevally.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 20, true),
+                new Fish(22, "Eel", "Eel", ImageHelper.convertImage("drawable/fish/finfish/eel.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 6, true),
+                new Fish(23, "Garfish", "Garfish", ImageHelper.convertImage("drawable/fish/finfish/garfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(24, "Groper", "Groper", ImageHelper.convertImage("drawable/fish/finfish/groper.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 5, true),
+                new Fish(25, "Kingfish", "Kingfish", ImageHelper.convertImage("drawable/fish/finfish/kingfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 75, 3, true),
+                new Fish(26, "Grey Mullet", "Grey Mullet", ImageHelper.convertImage("drawable/fish/finfish/greymullet.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 30, true),
+                new Fish(27, "Pilchards", "Pilchards", ImageHelper.convertImage("drawable/fish/finfish/pilchards.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(28, "Snapper", "Snapper", ImageHelper.convertImage("drawable/fish/finfish/snapper.png"), new Category(1, "Fin Fish", "Fin Fish"), 27, 10, true),
+                new Fish(29, "Yellow Eyed Mullet", "Yellow Eyed Mullet", ImageHelper.convertImage("drawable/fish/finfish/yelloweyedmullet.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
 
-        /*  Faq [] faqs = new Faq[] { new Faq(),
-                                  new Faq(),
-                                  new Faq(),
-                                  new Faq()};
+                new Fish(30, "Anchovy", "Anchovy", ImageHelper.convertImage("drawable/fish/finfish/anchovy.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(31, "Barracouta", "Barracouta", ImageHelper.convertImage("drawable/fish/finfish/barracouta.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(32, "Big Eye Tuna", "Big Eye Tuna", ImageHelper.convertImage("drawable/fish/finfish/bigeyetuna.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(33, "Blue Mackerel", "Blue Mackerel", ImageHelper.convertImage("drawable/fish/finfish/bluemackerel.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(34, "Blue Marlin", "Blue Marlin", ImageHelper.convertImage("drawable/fish/finfish/bluemarlin.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(35, "Blue Mao", "Blue Mao", ImageHelper.convertImage("drawable/fish/finfish/bluemaomao.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+
+                new Fish(37, "Blue Shark", "Blue Shark", ImageHelper.convertImage("drawable/fish/finfish/blueshark.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(38, "Bronze Shark", "Bronze Shark", ImageHelper.convertImage("drawable/fish/finfish/bronzeshark.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(39, "Cardinalfish", "Cardinalfish", ImageHelper.convertImage("drawable/fish/finfish/cardinalfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(40, "Frostfish", "Frostfish", ImageHelper.convertImage("drawable/fish/finfish/frostfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+
+                new Fish(42, "Gemfish", "Gemfish", ImageHelper.convertImage("drawable/fish/finfish/gemfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(43, "Greenback Flounder", "Greenback Flounder", ImageHelper.convertImage("drawable/fish/finfish/greenbackflounder.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 20, true),
+                new Fish(44, "Hake", "Hake", ImageHelper.convertImage("drawable/fish/finfish/hake.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(45, "Hammerhead Shark ", "Hammerhead Shark", ImageHelper.convertImage("drawable/fish/finfish/hammerhearshark.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(46, "Hoki", "Hoki", ImageHelper.convertImage("drawable/fish/finfish/hoki.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(47, "Jack Mackerel", "Jack Mackerel", ImageHelper.convertImage("drawable/fish/finfish/jackmackerel.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(48, "Leather Jacket", "Leather Jacket", ImageHelper.convertImage("drawable/fish/finfish/leatherjacket.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(49, "Ling", "Ling", ImageHelper.convertImage("drawable/fish/finfish/ling.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(50, "Mako Shark", "Mako Shark", ImageHelper.convertImage("drawable/fish/finfish/makoshark.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+
+                new Fish(51, "Marble Fish", "Marble Fish", ImageHelper.convertImage("drawable/fish/finfish/marblefish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(52, "Marlin", "Marlin", ImageHelper.convertImage("drawable/fish/finfish/marlin.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(53, "Moonfish", "Moonfish", ImageHelper.convertImage("drawable/fish/finfish/moonfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(54, "Pacific Bluefin Tuna", "Pacific Bluefin Tuna", ImageHelper.convertImage("drawable/fish/finfish/pacificbluefintuna.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(55, "Porbeagle Shark", "Porbeagle Shark", ImageHelper.convertImage("drawable/fish/finfish/porbeagleshark.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(56, "Quinnat Salmon", "Quinnat Salmon", ImageHelper.convertImage("drawable/fish/finfish/quinnatsalmon.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(57, "Red Cod", "Red Cod", ImageHelper.convertImage("drawable/fish/finfish/redcod.png"), new Category(1, "Fin Fish", "Fin Fish"), 25, 20, true),
+                new Fish(58, "Sea Perch", "Sea Perch", ImageHelper.convertImage("drawable/fish/finfish/seaperch.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 10, true),
+                new Fish(59, "7 Gill Shark", "7 Gill Shark", ImageHelper.convertImage("drawable/fish/finfish/sevengillshark.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(60, "Silver Warehou", "Silver Warehou", ImageHelper.convertImage("drawable/fish/finfish/silverwarehou.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+
+                new Fish(61, "Skate", "Skate", ImageHelper.convertImage("drawable/fish/finfish/skate.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(62, "Skipjack", "Skipjack", ImageHelper.convertImage("drawable/fish/finfish/skipjack.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(63, "Slender Sprat", "Slender Sprat", ImageHelper.convertImage("drawable/fish/finfish/slendersprat.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(64, "Smelt", "Smelt", ImageHelper.convertImage("drawable/fish/finfish/smelt.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(65, "Spiny Dogfish", "Spiny Dogfish", ImageHelper.convertImage("drawable/fish/finfish/spinydogfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(66, "Stargazer", "Stargazer", ImageHelper.convertImage("drawable/fish/finfish/stargazer.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(67, "Swordfish", "Swordfish", ImageHelper.convertImage("drawable/fish/finfish/swordfish.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(68, "Trumpeter", "Trumpeter", ImageHelper.convertImage("drawable/fish/finfish/trumpeter.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(69, "Warehou", "Warehou", ImageHelper.convertImage("drawable/fish/finfish/warehou.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(70, "Wrasse", "Wrasse", ImageHelper.convertImage("drawable/fish/finfish/wrasse.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
+                new Fish(71, "Yellowfin Tuna", "Yellowfin Tuna", ImageHelper.convertImage("drawable/fish/finfish/yellowfintuna.png"), new Category(1, "Fin Fish", "Fin Fish"), 0, 0, true),
 
 
-        NetRule[] netRules = new NetRule[] { new NetRule(),
+                new Fish(72, "Koura", "Koura", ImageHelper.convertImage("drawable/fish/crayfish/koura.png"), new Category(2, "Cray Fish", "Cray Fish"), 0, 0, true),
+                new Fish(73, "Packhorse Rock Lobster", "Packhorse Rock Lobster", ImageHelper.convertImage("drawable/fish/crayfish/packhorserocklobster.png"), new Category(2, "Cray Fish", "Cray Fish"), 22, 6, true),
+                new Fish(74, "Spiny Rock Lobster", "Spiny Rock Lobster", ImageHelper.convertImage("drawable/fish/crayfish/spinyrocklobster.png"), new Category(2, "Cray Fish", "Cray Fish"), 6, 6, true),
+
+
+                new Fish(75, "Arrow Squid", "Arrow Squid", ImageHelper.convertImage("drawable/fish/shellfish/spinyrocklobster.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(76, "Cockle", "Cockle", ImageHelper.convertImage("drawable/fish/shellfish/spinyrocklobster.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(77, "Kina", "Kina", ImageHelper.convertImage("drawable/fish/shellfish/kina.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(78, "Knobbed Whelk", "Knobbed Whelk", ImageHelper.convertImage("drawable/fish/shellfish/knobbedwhelk.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(79, "Mussel", "Mussel", ImageHelper.convertImage("drawable/fish/shellfish/mussel.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 25, true),
+                new Fish(80, "Octopus", "Octopus", ImageHelper.convertImage("drawable/fish/shellfish/octopus.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(81, "Oyster (dredge)", "Oyster (dredge)", ImageHelper.convertImage("drawable/fish/shellfish/oysterdredge.png"), new Category(3, "Shell Fish", "Shell Fish"), 6, 50, true),
+                new Fish(82, "Oyster (rock/pacific)", "Oyster (rock/pacific)", ImageHelper.convertImage("drawable/fish/shellfish/oysterrockpacific.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 100, true),
+                new Fish(83, "Paddle Crab", "Paddle Crab", ImageHelper.convertImage("drawable/fish/shellfish/paddlecrab.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(84, "Paua", "Paua", ImageHelper.convertImage("drawable/fish/shellfish/paua.png"), new Category(3, "Shell Fish", "Shell Fish"), 13, 15, true),
+                new Fish(85, "Pipi", "Pipi", ImageHelper.convertImage("drawable/fish/shellfish/pipi.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(86, "Red Crab", "Red Crab", ImageHelper.convertImage("drawable/fish/shellfish/redcrab.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(87, "Scallop", "Scallop", ImageHelper.convertImage("drawable/fish/shellfish/scallop.png"), new Category(3, "Shell Fish", "Shell Fish"), 10, 20, true),
+                new Fish(89, "Trough Shell", "Trough Shell", ImageHelper.convertImage("drawable/fish/shellfish/troughshell.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true),
+                new Fish(90, "Tuatua", "Tuatua", ImageHelper.convertImage("drawable/fish/shellfish/tuatua.png"), new Category(3, "Shell Fish", "Shell Fish"), 0, 50, true)};
+
+
+
+
+        Faq [] faqs = new Faq[] { new Faq(1, "Do I need a fishing licence?", "Yes you need a fishing licence to fish in all freshwater fisheries in NZ, these can be purchased online or once you arrive in NZ at most sports stores and retailers  specialising in fishing and the outdoors."),
+                                  new Faq(2, "When does the fishing season start in New Zealand?", "The lowland streams all open on the 1st October with the back country rivers opening on the 1st NOVEMBER. The Southern Lakes are open all year round for fishing with some great options if your here during this time and interested in a days fishing."),
+                                  new Faq(3, "Can I bring my own fishing gear to New Zealand?", "Yes, we recommend you bring your own gear to NZ where where possible. Using your own fishing equipment gives  you added confidence.you added confidence."),};
+
+
+       /*   NetRule[] netRules = new NetRule[] { new NetRule(),
                                              new NetRule(),
                                              new NetRule(),
                                              new NetRule() };

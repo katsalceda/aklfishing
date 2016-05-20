@@ -10,22 +10,18 @@ public class Fish {
     private byte[] fishImage;
     private Category fishCat;
     private int minFishLengthCm;
-    private int minFishMeshSizeMm;
-    private int minDragNetMeshMm;
     private int maxDailyLimit;
     private boolean isCombinedBag;
 
 
     public Fish(){}
-    public Fish(int fishId, String fishName, String fishDescription, byte[] fishImage, Category fishCat, int minFishLengthCm, int minFishMeshSizeMm, int minDragNetMeshMm,int maxDailyLimit, boolean isCombinedBag){
+    public Fish(int fishId, String fishName, String fishDescription, byte[] fishImage, Category fishCat, int minFishLengthCm, int maxDailyLimit, boolean isCombinedBag){
         this.fishId = fishId;
         this.fishName = fishName;
         this.fishDescription = fishDescription;
         this.fishImage = fishImage;
         this.fishCat = fishCat;
         this.minFishLengthCm = minFishLengthCm;
-        this.minFishMeshSizeMm = minFishMeshSizeMm;
-        this.minDragNetMeshMm = minDragNetMeshMm;
         this.maxDailyLimit = maxDailyLimit;
         this.isCombinedBag = isCombinedBag;
     }
@@ -77,22 +73,6 @@ public class Fish {
 
     public void setMinFishLengthCm(int minFishLengthCm) {
         this.minFishLengthCm = minFishLengthCm;
-    }
-
-    public int getMinFishMeshSizeMm() {
-        return minFishMeshSizeMm;
-    }
-
-    public void setMinFishMeshSizeMm(int minFishMeshSizeMm) {
-        this.minFishMeshSizeMm = minFishMeshSizeMm;
-    }
-
-    public int getMinDragNetMeshMm() {
-        return minDragNetMeshMm;
-    }
-
-    public void setMinDragNetMeshMm(int minDragNetMeshMm) {
-        this.minDragNetMeshMm = minDragNetMeshMm;
     }
 
     public int getMaxDailyLimit() {
