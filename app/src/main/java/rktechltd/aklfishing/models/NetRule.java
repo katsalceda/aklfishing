@@ -6,15 +6,18 @@ package rktechltd.aklfishing.models;
 public class NetRule {
     private int rulesId;
     private String description;
+    private String title;
+    private int penalty;
     private byte[] image;
 
-    public NetRule(){}
-    public NetRule(int rulesId, String description, byte[] image) {
+
+    public NetRule(int rulesId, String description, String title, int penalty, byte[] image) {
         this.rulesId = rulesId;
         this.description = description;
+        this.title = title;
+        this.penalty = penalty;
         this.image = image;
     }
-
 
     public int getRulesId() {
         return rulesId;
@@ -30,6 +33,22 @@ public class NetRule {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getPenalty() {
+        return penalty;
+    }
+
+    public void setPenalty(int penalty) {
+        this.penalty = penalty;
     }
 
     public byte[] getImage() {
