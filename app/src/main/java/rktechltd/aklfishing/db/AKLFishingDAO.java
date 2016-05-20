@@ -23,7 +23,9 @@ public class AKLFishingDAO {
         db = new AKLFishingDBHelper(context);
     }
 
-    public void insertNewCategory(Category cat){}
+    public void insertNewCategory(Category cat){
+
+    }
     public void insertNewChecklist(Checklist checklist){}
     public void insertNewFaq(Faq faq){}
     public void insertNewFish(Fish fish){}

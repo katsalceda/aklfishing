@@ -5,12 +5,14 @@ package rktechltd.aklfishing.models;
  */
 public class Checklist {
     private int checkListId;
+    private String title;
     private String description;
     private byte[] image;
 
     public Checklist(){}
-    public Checklist(int checkListId, String description, byte[] image) {
+    public Checklist(int checkListId, String title, String description, byte[] image) {
         this.checkListId = checkListId;
+        this.title = title;
         this.description = description;
         this.image = image;
     }
@@ -21,6 +23,13 @@ public class Checklist {
 
     public void setCheckListId(int checkListId) {
         this.checkListId = checkListId;
+    }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -38,4 +47,6 @@ public class Checklist {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
+
 }
