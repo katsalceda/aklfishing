@@ -14,13 +14,48 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    static final LatLng DerekPos = new LatLng(40, -79);
+
+    private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try{
+            if(googleMap == null) {
+                googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+            }
+
+            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+            //googleMap.setMyLocationEnabled(true);
+
+            googleMap.setTrafficEnabled(true);
+
+            googleMap.setIndoorEnabled(true);
+
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+            Marker marker = googleMap.addMarker(new MarkerOptions().position(DerekPos).title("You are here"));
+
+            }
+
+        catch(Exception e){
+            e.printStackTrace();
+
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
