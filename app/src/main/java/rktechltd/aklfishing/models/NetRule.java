@@ -1,26 +1,27 @@
-package rktechltd.aklfishing;
+package rktechltd.aklfishing.models;
 
 /**
  * Created by romelyn on 12/05/2016.
  */
-public class Checklist {
-    private int checkListId;
+public class NetRule {
+    private int rulesId;
     private String description;
     private byte[] image;
 
-    public Checklist(){}
-    public Checklist(int checkListId, String description, byte[] image) {
-        this.checkListId = checkListId;
+    public NetRule(){}
+    public NetRule(int rulesId, String description, byte[] image) {
+        this.rulesId = rulesId;
         this.description = description;
         this.image = image;
     }
 
-    public int getCheckListId() {
-        return checkListId;
+
+    public int getRulesId() {
+        return rulesId;
     }
 
-    public void setCheckListId(int checkListId) {
-        this.checkListId = checkListId;
+    public void setRulesId(int rulesId) {
+        this.rulesId = rulesId;
     }
 
     public String getDescription() {

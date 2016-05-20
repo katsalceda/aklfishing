@@ -1,7 +1,4 @@
-package rktechltd.aklfishing;
-
-import java.sql.Time;
-import java.util.Date;
+package rktechltd.aklfishing.models;
 
 /**
  * Created by romelyn on 12/05/2016.

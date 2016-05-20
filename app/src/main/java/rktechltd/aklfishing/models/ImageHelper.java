@@ -1,12 +1,9 @@
-package rktechltd.aklfishing;
+package rktechltd.aklfishing.models;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by romelyn on 16/05/2016.
