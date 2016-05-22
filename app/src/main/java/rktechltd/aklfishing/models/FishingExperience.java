@@ -8,13 +8,13 @@ import java.util.Date;
  */
 public class FishingExperience {
     private int experienceId;
-    private Location location;
+    private int location;
     private Date date;
     private Time time;
     private String remark;
 
 
-    public FishingExperience(int experienceId, Location location, Date date, Time time, String remark) {
+    public FishingExperience(int experienceId, int location, Date date, Time time, String remark) {
         this.experienceId = experienceId;
         this.location = location;
         this.date = date;
@@ -30,11 +30,11 @@ public class FishingExperience {
         this.experienceId = experienceId;
     }
 
-    public Location getLocation() {
+    public int getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(int location) {
         this.location = location;
     }
 

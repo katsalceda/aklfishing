@@ -8,14 +8,14 @@ public class Fish {
     private String fishName;
     private String fishDescription;
     private byte[] fishImage;
-    private Category fishCat;
+    private int fishCat;
     private int minFishLengthCm;
     private int maxDailyLimit;
-    private boolean isCombinedBag;
+    private int isCombinedBag;
 
 
     public Fish(){}
-    public Fish(int fishId, String fishName, String fishDescription, byte[] fishImage, Category fishCat, int minFishLengthCm, int maxDailyLimit, boolean isCombinedBag){
+    public Fish(int fishId, String fishName, String fishDescription, byte[] fishImage, int fishCat, int minFishLengthCm, int maxDailyLimit, int isCombinedBag){
         this.fishId = fishId;
         this.fishName = fishName;
         this.fishDescription = fishDescription;
@@ -59,11 +59,11 @@ public class Fish {
         this.fishImage = fishImage;
     }
 
-    public Category getFishCat() {
+    public int getFishCat() {
         return fishCat;
     }
 
-    public void setFishCat(Category fishCat) {
+    public void setFishCat(int fishCat) {
         this.fishCat = fishCat;
     }
 
@@ -83,11 +83,11 @@ public class Fish {
         this.maxDailyLimit = maxDailyLimit;
     }
 
-    public boolean isCombinedBag() {
+    public int isCombinedBag() {
         return isCombinedBag;
     }
 
-    public void setCombinedBag(boolean combinedBag) {
+    public void setCombinedBag(int combinedBag) {
         isCombinedBag = combinedBag;
     }
 }

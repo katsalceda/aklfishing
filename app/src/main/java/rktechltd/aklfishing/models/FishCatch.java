@@ -5,7 +5,7 @@ package rktechltd.aklfishing.models;
  */
 public class FishCatch {
     private int fishCatchId;
-    private FishingExperience fx;
+    private int fx;
     private double length;
     private double weight;
     private byte[] picture;
@@ -13,7 +13,7 @@ public class FishCatch {
     private String remark;
 
 
-    public FishCatch(int fishCatchId, FishingExperience fx, double length, double weight, byte[] picture, String name, String remark) {
+    public FishCatch(int fishCatchId, int fx, double length, double weight, byte[] picture, String name, String remark) {
         this.fishCatchId = fishCatchId;
         this.fx = fx;
         this.length = length;
@@ -31,11 +31,11 @@ public class FishCatch {
         this.fishCatchId = fishCatchId;
     }
 
-    public FishingExperience getFx() {
+    public int getFx() {
         return fx;
     }
 
-    public void setFx(FishingExperience fx) {
+    public void setFx(int fx) {
         this.fx = fx;
     }
 
