@@ -6,21 +6,20 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.app.Activity;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends Activity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static final LatLng DerekPos = new LatLng(40, -79);
+    static final LatLng MappyMap = new LatLng(40, -79);
 
     private GoogleMap googleMap;
 
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity
 
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-            //googleMap.setMyLocationEnabled(true);
+            googleMap.setMyLocationEnabled(true);
 
             googleMap.setTrafficEnabled(true);
 
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity
 
             googleMap.getUiSettings().setZoomControlsEnabled(true);
 
-            Marker marker = googleMap.addMarker(new MarkerOptions().position(DerekPos).title("You are here"));
+            Marker marker = googleMap.addMarker(new MarkerOptions().position(MappyMap).title("You are here"));
 
             }
 
@@ -53,12 +52,10 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
