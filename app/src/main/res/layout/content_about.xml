@@ -46,7 +46,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
         android:clickable="true"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:onClick="tvDisclaimer" />
 
     <TextView
         android:layout_width="wrap_content"
