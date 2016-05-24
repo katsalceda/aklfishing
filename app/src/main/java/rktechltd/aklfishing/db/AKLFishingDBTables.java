@@ -4,11 +4,20 @@ package rktechltd.aklfishing.db;
 import android.provider.BaseColumns;
 
 /**
- * Created by romelyn on 12/05/2016.
+ * This class is an implementation of the database designed for the Auckland Fishing App
+ * @version 12/05/2016
+ * @author Romelyn Ungab
+ * @author Katrina Salceda
  */
 public class AKLFishingDBTables {
+    /**
+     * A constructor for AKLFishingDBTables
+     */
     public AKLFishingDBTables(){    }
 
+    /**
+     * A subclass which is an implementation of the FishCategory table
+     */
     public static abstract class Category implements BaseColumns {
         public static final String TABLE_NAME = "category";
         public static final String COLUMN_CAT_ID = "categoryId";
@@ -18,6 +27,9 @@ public class AKLFishingDBTables {
         public static final String[] ALL_COLUMNS ={COLUMN_CAT_ID,COLUMN_CAT_NAME,COLUMN_CAT_DESC};
     }
 
+    /**
+     * A subclass which is an implementation of the SafetyCheckList table
+     */
     public static abstract class CheckList implements BaseColumns {
         public static final String TABLE_NAME = "checkList";
         public static final String COLUMN_CHECKLIST_ID = "checkListId";
@@ -28,6 +40,9 @@ public class AKLFishingDBTables {
         public static final String[] ALL_COLUMNS = {COLUMN_CHECKLIST_ID,COLUMN_CHECKLIST_TITLE, COLUMN_CHECKLIST_DESCRIPTION, COLUMN_CHECKLIST_IMAGE};
     }
 
+    /**
+     * A sublcass which is an implementation of the FAQ table
+     */
     public static abstract class Faq implements BaseColumns {
         public static final String TABLE_NAME = "faq";
         public static final String COLUMN_FAQ_ID = "faqId";
@@ -36,6 +51,10 @@ public class AKLFishingDBTables {
         public static final String PRIMARY_KEY = "PRIMARY KEY (" + COLUMN_FAQ_ID + ")";
         public static final String[] ALL_COLUMNS = {COLUMN_FAQ_ID, COLUMN_FAQ_QUESTION, COLUMN_FAQ_ANSWER};
     }
+
+    /**
+     * A subclass which is an implementation of the Fish table
+     */
     public static abstract class Fish implements BaseColumns{
         public static final String TABLE_NAME = "fish";
         public static final String COLUMN_FISH_ID = "fishId";
@@ -49,6 +68,10 @@ public class AKLFishingDBTables {
         public static final String PRIMARY_KEY="PRIMARY KEY("+ COLUMN_FISH_ID+")";
         public static final String[] ALL_COLUMNS ={COLUMN_FISH_ID,COLUMN_FISH_NAME,COLUMN_FISH_DESC,COLUMN_FISH_IMAGE,COLUMN_FISH_CAT,COLUMN_MIN_FISH_LENGTH_CM,COLUMN_MIN_FISH_MAX_DAILY_LIMIT,COLUMN_IS_COMBINED_BAG};
     }
+
+    /**
+     * A subclass which is an implementation of the FishingExperience table
+     */
     public static abstract class FishingExperience implements BaseColumns{
         public static final String TABLE_NAME = "fishingExperience";
         public static final String COLUMN_FISHING_EXPERIENCE_ID ="fishingExperienceId";
@@ -60,6 +83,9 @@ public class AKLFishingDBTables {
         public static final String[] ALL_COLUMNS ={COLUMN_FISHING_EXPERIENCE_ID,COLUMN_FISHING_EXPERIENCE_LOCATION_ID,COLUMN_FISHING_EXPERIENCE_DATE,COLUMN_FISHING_EXPERIENCE_TIME,COLUMN_FISHING_EXPERIENCE_REMARK};
     }
 
+    /**
+     * A subclass which is an implementation of the FishCatch table
+     */
     public static abstract class FishCatch implements BaseColumns{
         public static final String TABLE_NAME = "fishCatch";
         public static final String COLUMN_FISH_CATCH_ID ="fishCatchId";
@@ -73,6 +99,9 @@ public class AKLFishingDBTables {
         public static final String[] ALL_COLUMNS ={COLUMN_FISH_CATCH_ID,COLUMN_FISH_CATCH_EXPERIENCE,COLUMN_FISH_CATCH_LENGTH,COLUMN_FISH_CATCH_WEIGHT,COLUMN_FISH_CATCH_REMARK,COLUMN_FISH_CATCH_NAME};
     }
 
+    /**
+     * A subclass which is an implementation of the Location table
+     */
     public static abstract class Location implements BaseColumns{
         public static final String TABLE_NAME = "location";
         public static final String COLUMN_LOCATION_ID = "locationId";
@@ -84,6 +113,9 @@ public class AKLFishingDBTables {
         public static final String[] ALL_COLUMNS ={COLUMN_LOCATION_ID,COLUMN_LOCATION_NAME,COLUMN_LOCATION_LONGITUDE,COLUMN_lOCATION_LATITUDE,COLUMN_LOCATION_N0TE};
     }
 
+    /**
+     * A subclass which is an implementation of the NetRule table
+     */
     public static abstract class NetRules implements BaseColumns {
         public static final String TABLE_NAME = "netRules";
         public static final String COLUMN_NETRULES_ID = "netRulesId";

@@ -7,8 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Base64;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import rktechltd.aklfishing.models.Category;
 import rktechltd.aklfishing.models.Checklist;
@@ -66,8 +71,6 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
             AKLFishingDBTables.Fish.COLUMN_IS_COMBINED_BAG + NUMERIC_TYPE + COMMA_SEP +
             AKLFishingDBTables.Fish.PRIMARY_KEY +
             " )";
-
-
 
     private static final String CREATE_LOCATION_TABLE = "CREATE TABLE " + AKLFishingDBTables.Location.TABLE_NAME + " (" +
             AKLFishingDBTables.Location.COLUMN_LOCATION_ID + NUMERIC_TYPE + COMMA_SEP +
@@ -131,9 +134,8 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_NETRULES_TABLE);
         db.execSQL(CREATE_FAQ_TABLE);
 
-        //save existing data TBA
-        //checkListId, String title, String description, byte[] image) {
-      Checklist[] checklists = new Checklist[]{ new Checklist(1,"Life Jackets and personal floatation device (PFDs)","Maritime law requires ALL skippers to carry enough life jackets of the right size and type for everyone on board. Wearing a life jacket is mandatory at all times unless the risk is very low.", ImageHelper.convertImage("drawable/safetychecklist/LifeJackets.png") ),
+        //Existing checklist data
+        Checklist[] checklists = new Checklist[]{ new Checklist(1,"Life Jackets and personal floatation device (PFDs)","Maritime law requires ALL skippers to carry enough life jackets of the right size and type for everyone on board. Wearing a life jacket is mandatory at all times unless the risk is very low.", ImageHelper.convertImage("drawable/safetychecklist/LifeJackets.png") ),
                                                 new Checklist(2,"Communication Equipment","This include distress beacons (EPIRB or PLB) VHF radio, flares, and cellphones.  On any trip you need to carry two means of waterproof communication and three means if you are over 2 miles from shore.",ImageHelper.convertImage("drawable/safetychecklist/Communication.png") ),
                                                 new Checklist(3,"Navigation","You will need a chart and compass in all but the smallest of boats if you go more than a mile or two from shore.  A GPS and a depth sounder are also very useful.  Exactly what you carry will depend on the size and type of your boat and how far from land you go.  Talk to Coastguard of New Zealand for advice.",ImageHelper.convertImage("drawable/safetychecklist/Navigation.png") ),
                                                 new Checklist(4,"Anchor","To determine the right size for your boat, the anchor should weigh not less than 1.5kg per meter of boat length, with chain at least equal to the length of the boat.  A non-floating rope well secured to the boat should be as long as is.",ImageHelper.convertImage("drawable/safetychecklist/anchor.png") ),
@@ -143,13 +145,15 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
                                                 new Checklist(8,"Protective Clothin","Carry adequate warm protective clothing",ImageHelper.convertImage("drawable/safetychecklist/ProtectiveClothing.png") ),
                                                 new Checklist(8,"Knife","Has many uses - remember to keep it sharp.",ImageHelper.convertImage("drawable/safetychecklist/Knife.png") ),
                                                 new Checklist(9,"Torch","Always carry a torch with spare batteries and bulb.",ImageHelper.convertImage("drawable/safetychecklist/Torch.png") ),
-      };
+        };
 
+        //Existing category data
         Category[] cats = new Category[]{new Category(1, "Fin Fish", "Fin Fish"),
                                          new Category(2, "Cray Fish", "Cray Fish"),
                                          new Category(3, "Shell Fish", "Shell Fish")
         };
 
+        //Existing fish data
         Fish[] fishes = new Fish[]{ new Fish(1, "Blue Cod", "Blue Cod", ImageHelper.convertImage("drawable/fish/finfish/bluecod.png"), 1, 30, 20, 1),
                                     new Fish(2, "Blue Moki", "Blue Moki", ImageHelper.convertImage("drawable/fish/finfish/bluemoki.png"),1, 40, 20, 1),
                                     new Fish(3, "Blue Nose", "Blue Nose", ImageHelper.convertImage("drawable/fish/finfish/bluenose.png"),1, 0, 5, 1),
@@ -246,16 +250,14 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
                                     new Fish(90, "Tuatua", "Tuatua", ImageHelper.convertImage("drawable/fish/shellfish/tuatua.png"), 3, 0, 50, 1)
         };
 
-
-
-
+        //existing faq data
         Faq [] faqs = new Faq[] { new Faq(1, "Do I need a fishing licence?", "Yes you need a fishing licence to fish in all freshwater fisheries in NZ, these can be purchased online or once you arrive in NZ at most sports stores and retailers  specialising in fishing and the outdoors."),
                                   new Faq(2, "When does the fishing season start in New Zealand?", "The lowland streams all open on the 1st October with the back country rivers opening on the 1st NOVEMBER. The Southern Lakes are open all year round for fishing with some great options if your here during this time and interested in a days fishing."),
                                   new Faq(3, "Can I bring my own fishing gear to New Zealand?", "Yes, we recommend you bring your own gear to NZ where where possible. Using your own fishing equipment gives  you added confidence.you added confidence.")
         };
 
-
-          NetRule[] netRules = new NetRule[] { new NetRule(1,"Set nets must have surface float at each end that is clearly and legibly marked with the fisher's last name, initials and phone no.","Set nets must be marked",250, ImageHelper.convertImage("drawable/netrules/netsmarked.png")),
+        //existing netRules data
+        NetRule[] netRules = new NetRule[] { new NetRule(1,"Set nets must have surface float at each end that is clearly and legibly marked with the fisher's last name, initials and phone no.","Set nets must be marked",250, ImageHelper.convertImage("drawable/netrules/netsmarked.png")),
                                                new NetRule(2, "Suitable anchors and floats must be used to deploy a set net", "Use stakes to hold nets is prohibited", 250, ImageHelper.convertImage("drawable/netrules/netprohibited.png")),
                                                new NetRule(3, "Nets must not be used in a way that allows fish to be stranded in the net by the falling tide", "Stalling of nets is probihited", 250, ImageHelper.convertImage("drawable/netrules/netnotallowed.png")),
                                                new NetRule(4, "No net (Either used alone or with other nets) can be set more than a quarter of the way across a channel, bay or waterway", "Restrictions on nets in channels", 250,ImageHelper.convertImage("drawable/netrules/netchannels.png")),
@@ -263,29 +265,40 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
                                                new NetRule(6, "NOTE: There must be at least 2 fishers on the boat and the second net may only be used if it is less than 10m long and has a mesh of a less than 50mm", "Maximum one net per person or one set and one bait net per vessel", 250,ImageHelper.convertImage("drawable/netrules/baitvessel.png")),
                                                new NetRule(7, "A person may not set any set within 60m of another net.", "Nets must be more than 60m apart", 250,ImageHelper.convertImage("drawable/netrules/60mapart.png")),
                                                new NetRule(8, "No person may possess or use a baited net other than a fyke net or hinaki net.", "Using baited nets is prohibited", 250,ImageHelper.convertImage("drawable/netrules/bait.png"))
-          };
+        };
 
+        //save existing checklist data
         for(Checklist c : checklists ){
-          saveCheckList(c);
+          saveCheckList(c);//saving the data
          }
 
+        //save existing category data
         for(Category c : cats ){
-            saveCategory(c);
+            saveCategory(c); //saving the data
         }
+
+        //save existing faq data
         for(Faq f : faqs ){
-            saveFaq(f);
+            saveFaq(f); //saving the data
         }
 
+        //save existing netrules data
         for(NetRule n : netRules ){
-            saveNetRule(n);
+            saveNetRule(n);//saving the data
         }
 
+        //save existing fish data
         for(Fish f :fishes ){
-            saveFish(f);
+            saveFish(f);//saving the data
         }
-
     }
 
+    /**
+     * An implementation of the onUpgrade method that will execute when a new version of the db is implemented
+     * @param db
+     * @param oldVersion int
+     * @param newVersion int
+     */
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DELETE_CATEGORY_TABLE);
         db.execSQL(DELETE_FISH_TABLE);
@@ -298,6 +311,12 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * a method saving a Category
+     * @param aCategory
+     * @return boolean
+     */
+    //TBA thread
     public boolean saveCategory(Category aCategory) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -310,6 +329,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    //TBA thread
     public boolean saveCheckList(Checklist aCheckList){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -321,6 +341,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
+    //TBA thread
     public boolean saveFaq(Faq aFaq){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -331,7 +352,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-
+    //TBA thread
     public boolean saveFish(Fish aFish) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -347,7 +368,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-
+    //TBA thread
     public boolean saveFishingCatch(FishCatch aFishCatch) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -361,6 +382,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
+    //TBA thread
     public boolean saveFishingExperience(FishingExperience aFishExp) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -373,7 +395,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-
+    //TBA thread
     public boolean saveLocation(Location aLocation) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -386,7 +408,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-
+    //TBA thread
     public boolean saveNetRule(NetRule aNetRule){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -399,7 +421,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-
+    //TBA thread
     public List<Category> getAllCategories() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Category> catList=null;
@@ -421,7 +443,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         return catList;
     }
 
-
+    //TBA thread
     public List<Checklist> getAllChecklist() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Checklist> checkList=null;
@@ -443,7 +465,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         }
         return checkList;
     }
-
+    //TBA thread
     public List<Faq> getAllFaqs() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Faq> faqs=null;
@@ -463,7 +485,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         }
         return faqs;
     }
-
+    //TBA thread
     public List<Fish> getAllFishes(){
         SQLiteDatabase db = this.getReadableDatabase();
         List<Fish> fishes=null;
@@ -488,7 +510,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         }
         return fishes;
     }
-
+    //TBA thread
     public List<FishCatch> getAllFishCatch(){
         SQLiteDatabase db = this.getReadableDatabase();
         List<FishCatch> fishes=null;
@@ -514,7 +536,7 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
         return fishes;
     }
 
-   /* FishingExperience(int experienceId, int location, Date date, Time time, String remark)
+
     public List<FishingExperience> getAllFishingExperience(){
         SQLiteDatabase db = this.getReadableDatabase();
         List<FishingExperience> experiences=null;
@@ -529,14 +551,71 @@ public class AKLFishingDBHelper extends SQLiteOpenHelper {
             experiences = new ArrayList<FishingExperience>();
             cursor.moveToFirst();
             do {
-                FishingExperience exp = new FishingExperience(cursor.getInt(0), cursor.getInt(1), cursor.getString(2),cursor.getDouble(3),cursor.getBlob(4),cursor.getString(5),cursor.getString(6));
+                String date = cursor.getString(2);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+                Date convertedDate = new Date();
+
+                String time = cursor.getString(3);
+                Time convertedTime;
+                convertedTime =java.sql.Time.valueOf(time);
+                try {
+                    convertedDate = dateFormat.parse(date);
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+                FishingExperience exp = new FishingExperience(cursor.getInt(0), cursor.getInt(1),convertedDate,convertedTime,cursor.getString(4));
                 experiences.add(exp);
             } while (cursor.moveToNext());
             db.close();
         }
-        return fishes;
-    }*/
+        return experiences;
+    }
 
+    public List<Location> getAllLocations(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Location> locations=null;
+        String query = "SELECT " + AKLFishingDBTables.Location.COLUMN_LOCATION_ID + ", "
+                + AKLFishingDBTables.Location.COLUMN_lOCATION_LATITUDE+ ", "
+                + AKLFishingDBTables.Location.COLUMN_LOCATION_LONGITUDE+ ", "
+                + AKLFishingDBTables.Location.COLUMN_LOCATION_N0TE+", "
+                + AKLFishingDBTables.Location.COLUMN_LOCATION_NAME+ " FROM "
+                + AKLFishingDBTables.Location.TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor != null) {
+            locations = new ArrayList<Location>();
+            cursor.moveToFirst();
+            do {
+
+                Location location = new Location(cursor.getInt(0), cursor.getDouble(1), cursor.getDouble(2),cursor.getString(3),cursor.getString(4));
+                locations.add(location);
+            } while (cursor.moveToNext());
+            db.close();
+        }
+        return locations;
+    }
+    //public NetRule(int rulesId, String description, String title, double penalty, byte[] image) {
+    public List<NetRule> getAllNetRules(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<NetRule> netrules=null;
+        String query = "SELECT " + AKLFishingDBTables.NetRules.COLUMN_NETRULES_ID + ", "
+                + AKLFishingDBTables.NetRules.COLUMN_NETRULES_DESCRIPTION+ ", "
+                + AKLFishingDBTables.NetRules.COLUMN_NETRULES_TITLE+ ", "
+                + AKLFishingDBTables.NetRules.COLUMN_NETRULES_PENALTY+", "
+                + AKLFishingDBTables.NetRules.COLUMN_NETRULES_IMAGE+ " FROM "
+                + AKLFishingDBTables.NetRules.TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor != null) {
+            netrules = new ArrayList<NetRule>();
+            cursor.moveToFirst();
+            do {
+
+                NetRule netRule = new NetRule(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getDouble(3),cursor.getBlob(4));
+                netrules.add(netRule);
+            } while (cursor.moveToNext());
+            db.close();
+        }
+        return netrules;
+    }
 /*
 
     public List<User> getAllUsers() {
