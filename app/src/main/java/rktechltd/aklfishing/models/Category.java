@@ -2,6 +2,8 @@ package rktechltd.aklfishing.models;
 
 /**
  * Created by romelyn on 12/05/2016.
+ * This class represents the category of fishes in Auckland
+ *
  */
 public class Category {
     private int categoryId;

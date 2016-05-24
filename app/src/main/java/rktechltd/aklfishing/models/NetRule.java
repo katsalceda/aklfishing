@@ -7,11 +7,11 @@ public class NetRule {
     private int rulesId;
     private String description;
     private String title;
-    private int penalty;
+    private double penalty;
     private byte[] image;
 
 
-    public NetRule(int rulesId, String description, String title, int penalty, byte[] image) {
+    public NetRule(int rulesId, String description, String title, double penalty, byte[] image) {
         this.rulesId = rulesId;
         this.description = description;
         this.title = title;
@@ -43,11 +43,11 @@ public class NetRule {
         this.title = title;
     }
 
-    public int getPenalty() {
+    public double getPenalty() {
         return penalty;
     }
 
-    public void setPenalty(int penalty) {
+    public void setPenalty(double penalty) {
         this.penalty = penalty;
     }
 
