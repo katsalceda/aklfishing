@@ -2,6 +2,7 @@ package rktechltd.aklfishing.models;
 
 /**
  * Created by romelyn on 12/05/2016.
+ * This class represents a checklist when fishing in Auckland
  */
 public class Checklist {
     private int checkListId;
